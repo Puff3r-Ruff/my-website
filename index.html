@@ -1,16 +1,61 @@
-<nav class="navbar">
-    <a class="back-btn" href="javascript:history.back()">
-        <i>←</i> Back
-    </a>
+<style>
 
-    <div class="logo">
-        <span class="logo-text editable-text" style="cursor: text;">IdeaGo</span>
-        <img src="favicon.ico" alt="Business Logo" style="cursor: pointer;">
-    </div>
-</nav>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 20px;
+        background: #0f182a;
+        border-bottom: 1px solid #e5e5e5;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .back-btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s ease;
+    }
+
+    .back-btn:hover {
+        opacity: 0.6;
+    }
+
+    .back-btn i {
+        font-size: 20px;
+        margin-right: 6px;
+    }
+
+    .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* space between text and logo */
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff; /* adjust to match your theme */
+}
+
+.logo img {
+    height: 42px;
+    object-fit: contain;
+}
+
+</style>
 
 
-<!-- Google Tag Manager -->
+
+
+<!DOCTYPE html><!-- Google Tag Manager --><html lang="en" dir="ltr"><head>
 
   <title>
     Your Custom Website
@@ -71,9 +116,10 @@
 }
 
 </style>
+</head>
 
-
-
+<body class="template-index
+" data-cc-animate-timeout="0" id="Sav">
 
 <!----------------- Top Announcement Bar ---------------------------->
 <div id="shopify-section-announcement-bar" class="shopify-section section-announcement-bar">
@@ -92,7 +138,7 @@
       </div>
 
       <div class="announcement-bar__middle"><div class="announcement-bar__announcements"><div class="announcement">
-                <div class="announcement__text"><h4 class="editable-text" style="cursor: text;">Enter Business Message Here </h4></div>
+                <div class="announcement__text"><h4>Enter Business Message Here </h4></div>
               </div>
 
               <div class="announcement announcement--inactive">
@@ -125,13 +171,14 @@
     <div class="store-messages messages-2 desktop-only">
       <div class="container cf"><div class="message message-1" data-cc-animate="" data-cc-animate-delay="0.15s">
 
-                <h4 class="title editable-text" style="cursor: text;">Phone: +000 00 000 0000</h4>
+                <h4 class="title">Phone: +000 00 000 0000</h4>
 
           </div><div class="message message-2" data-cc-animate="" data-cc-animate-delay="0.3s">
 
-                <h4 class="title editable-text" style="cursor: text;">Email: info@YourEmail</h4>
+                <h4 class="title">Email: info@YourEmail</h4>
 
-            <div class="fluff"></div></div>
+            <div class="fluff"></div>
+          </div></div>
     </div></div>
 </div>
 <!----------------------------------------------------------- Contact Header End --------------------------------------->
@@ -159,8 +206,12 @@
   </style>
 
 <!-------------------------------------------- Main Image ------------------------------------------>
-<div class="height--fixed image-overlay image-overlay--bg-full" data-cc-animate="" data-cc-animate-delay="0.2s">
-    <img src="https://picsum.photos/1200/800?39" alt="Image" class="image-overlay__img" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+<div class="height--fixed image-overlay image-overlay--bg-full" data-cc-animate data-cc-animate-delay="0.2s">
+    <img 
+      src="https://picsum.photos/1200/800?39" 
+      alt="Image" 
+      class="image-overlay__img"
+      style="width:100%; height:100%; object-fit:cover;">
 </div>
 <!-----------------------------------------------Main Image End ---------------------------------->
 </div></div>
@@ -171,18 +222,18 @@
 <div id="shopify-section-template--18568265924941__16359278676808bea5" class="shopify-section section-featured-collection"><div class="section-id-template--18568265924941__16359278676808bea5 collection-slider-row " data-section-type="featured-collection" data-components="accordion,modal,price-range">
   <div class="container container--not-mobile container--no-max">
     <div class="collection-slider">
-      <h2 class="hometitle h4-style align-center has-paging editable-text" data-cc-animate="" data-cc-animate-delay="0.3s" style="cursor: text;">
+      <h2 class="hometitle h4-style align-center has-paging" data-cc-animate="" data-cc-animate-delay="0.3s">
         <a class="prev ltr-icon" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><title>Left</title><polyline points="15 18 9 12 15 6"></polyline></svg></a>
 
 <!-------------------------------- Text Under Main image ----------------------------------------------->        
-        <a class="has-paging__title"><span class="editable-text" style="cursor: text;">Enter Text Here</span></a>
+        <a class="has-paging__title" ><span>Enter Text Here</span></a>
 <!--------------------------------- Text under main image end ------------------------------------------>
 
         <a class="next ltr-icon" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><title>Right</title><polyline points="9 18 15 12 9 6"></polyline></svg></a>
       </h2><div class="view-all align-center" data-cc-animate="" data-cc-animate-delay="0.3s">
 
 <!-------------------------------- Text Under Main image ----------------------------------------------->
-          <p class="small-feature-link editable-text" style="cursor: text;">Enter Text</p>
+          <p class="small-feature-link" >Enter Text</p>
 <!-------------------------------- Text Under Main image ----------------------------------------------->
 
         </div><div class="collection-listing" data-cc-animate="cc-fade-in-up">
@@ -201,7 +252,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?40" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?40"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -213,7 +275,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -238,7 +300,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?41" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?41"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -250,7 +323,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -275,7 +348,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?42" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?42"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -287,7 +371,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -312,7 +396,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?43" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?43"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -324,7 +419,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -349,7 +444,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?45" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?45"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -361,7 +467,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -386,7 +492,18 @@
               <div class="rimage-outer-wrapper">
                 <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
 
-                  <img class="rimage__image fade-in cover" src="https://picsum.photos/1200/800?46" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+                  <img class="rimage__image fade-in cover"
+                       src="https://picsum.photos/1200/800?46"
+                       alt="Product Image"
+                       style="
+                         display:block !important;
+                         width:100% !important;
+                         height:100% !important;
+                         object-fit:cover !important;
+                         position:absolute !important;
+                         top:0; left:0;
+                         opacity:1 !important;
+                       ">
 
                 </div>
               </div>
@@ -398,7 +515,7 @@
 
         
 
-        <p class="btn btn--secondary quickbuy-toggle editable-text" style="cursor: text;">Image Text Here</p>
+        <p class="btn btn--secondary quickbuy-toggle">Image Text Here</p>
 
       </div>
 
@@ -427,9 +544,9 @@
   <div class="container">
     <div class="align-center spaced-column">
 
-              <h1 class="majortitle in-content editable-text" style="cursor: text;">Enter Text Here</h1>
+              <h1 class="majortitle in-content">Enter Text Here</h1>
 
-            <div class="rte lightly-spaced-row "><h4 class="editable-text" style="cursor: text;"><em>Enter Text Here</em></h4></div>
+            <div class="rte lightly-spaced-row "><h4><em>Enter Text Here</em></h4></div>
 
     </div>
   </div>
@@ -452,22 +569,22 @@
     }</style><div class="container" data-cc-animate="cc-fade-in-up" data-cc-animate-delay="0.2s">
     <div class="testimonial-list testimonial-list--image-right testimonial-list--with-images" data-testimonial-count="3" data-autoplay="true" data-autoplay-speed="5000">
 
-        <div class="subheading"><p class="editable-text" style="cursor: text;">Enter Reviews From Customers</p></div>
+        <div class="subheading"><p>Enter Reviews From Customers</p></div>
 
       <div class="testimonial-list__inner"><div class="testimonial testimonial-1">
             <div class="testimonial__column testimonial__column--text">
 
-                <div class="subheading"><p class="editable-text" style="cursor: text;">Enter Reviews From Customers</p></div>
+                <div class="subheading"><p>Enter Reviews From Customers</p></div>
 
-              <div class="testimonial__content"><div class="testimonial__star-rating heading-font"><span class="testimonial__star editable-text" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star editable-text" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star editable-text" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star editable-text" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star editable-text" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <div class="testimonial__content"><div class="testimonial__star-rating heading-font"><span class="testimonial__star"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
 </span></div><div class="testimonial__text">
-                    <p class="testimonial__blockquote heading-font editable-text" style="cursor: text;">Enter The customers review here</p>
+                    <p class="testimonial__blockquote heading-font">Enter The customers review here</p>
                   </div><div class="testimonial__author">
-                    <p class="editable-text" style="cursor: text;">— Enter Customers Name Here or County</p>
+                    <p>— Enter Customers Name Here or County</p>
                   </div></div>
             </div>
 
@@ -476,7 +593,14 @@
 
 <div class="rimage-outer-wrapper">
   <div class="rimage-wrapper lazyload--placeholder" style="padding-top:100.0%">
-    <img class="rimage__image lazyload--manual fade-in cover" src="https://picsum.photos/1200/800?41" data-widths="[180, 220, 300, 360, 460, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="0.6762589928057554" data-sizes="auto" alt="" data-parent-fit="cover" style="object-position: 63.7339% 52.376%; cursor: pointer;">
+    <img class="rimage__image lazyload--manual fade-in cover"
+         src="https://picsum.photos/1200/800?41"
+         data-widths="[180, 220, 300, 360, 460, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+         data-aspectratio="0.6762589928057554"
+         data-sizes="auto"
+         alt=""
+         data-parent-fit="cover"
+         style="object-position: 63.7339% 52.376%">
   </div>
 </div>
 
@@ -497,9 +621,9 @@
   <div class="container">
     <div class="align-center spaced-column">
 
-              <h2 class="majortitle in-content h1-style editable-text" style="cursor: text;">Social Tag Text</h2>
+              <h2 class="majortitle in-content h1-style">Social Tag Text</h2>
 
-            <div class="rte lightly-spaced-row large-text"><p class="editable-text" style="cursor: text;">TAG us in your pictures on Instagram @your business tag or email them to yourbusiness@email</p></div>
+            <div class="rte lightly-spaced-row large-text"><p>TAG us in your pictures on Instagram @your business tag or email them to yourbusiness@email</p></div>
 
     </div>
   </div>
@@ -533,7 +657,9 @@
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="https://picsum.photos/1200/800?50" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="https://picsum.photos/1200/800?50"
+                   class="rimage-outer-wrapper rimage-background fixed-height-item"
+                   style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
           </div>
         </div>
@@ -549,7 +675,9 @@
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="https://picsum.photos/1200/800?51" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="https://picsum.photos/1200/800?51"
+                   class="rimage-outer-wrapper rimage-background fixed-height-item"
+                   style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
           </div>
         </div>
@@ -565,7 +693,9 @@
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="https://picsum.photos/1200/800?52" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="https://picsum.photos/1200/800?52"
+                   class="rimage-outer-wrapper rimage-background fixed-height-item"
+                   style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
           </div>
         </div>
@@ -581,7 +711,9 @@
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="https://picsum.photos/1200/800?53" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="https://picsum.photos/1200/800?53"
+                   class="rimage-outer-wrapper rimage-background fixed-height-item"
+                   style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
           </div>
         </div>
@@ -612,7 +744,7 @@
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="editable-text" style="cursor: text;">Enter Your Business Address here or leave empty.</p></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p>Enter Your Business Address here or leave empty.</p></div>
 
                 </div>
 
@@ -634,7 +766,7 @@
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="editable-text" style="cursor: text;">Email: info@YourEmail</p></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p>Email: info@YourEmail</p></div>
 
                 </div>
 
@@ -651,7 +783,7 @@
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="editable-text" style="cursor: text;">Phone: +353 00 000 0000</p></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p>Phone: +353 00 000 0000</p></div>
 
                 </div>
 
@@ -671,7 +803,7 @@
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="editable-text" style="cursor: text;">Enter Text</p></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p>Enter Text</p></div>
 
                 </div>
 
@@ -701,15 +833,6 @@
 
 </div>
 
-<div id="saveLoadContainer" style="position: fixed; left: 20px; bottom: 20px; width: 260px; z-index: 999999; padding: 12px; background: rgba(255, 255, 255, 0.98); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;">
-  <button id="minifyBtn" type="button" title="Minify" style="width: 40px; padding: 0px; padding-bottom: 10px; margin-top: -20px; background: rgba(34, 34, 34, 0); color: rgb(0, 0, 0); border: none; border-radius: 8px; cursor: pointer; display: block; font-size: 20px;">⋯</button>
-
-  <button id="saveBtn" style="width:100%; padding:10px; margin-bottom:8px; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Save Website</button>
-
-  <button id="loadBtn" style="width:100%; padding:10px; margin-bottom:8px; background:#28a745; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Load Saved Website</button>
-    
-  <button id="UploadBtn" style="width:100%; padding:10px; background:#28a745; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Publish Website</button>
-</div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const carousel = document.querySelector(".product-list.carousel");
@@ -765,327 +888,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
-enableImageReplacement();
-enableHeroImageReplacement();
-enableTextEditing(); 
 });
-  function enableHeroImageReplacement() {
-    const hero = document.querySelector(".hero");
-    if (!hero) return;
-
-    hero.style.cursor = "pointer";
-
-    // remove any existing pickers we created earlier to avoid duplicates
-    const existing = document.getElementById("heroPicker");
-    if (existing) existing.remove();
-
-    const picker = document.createElement("input");
-    picker.type = "file";
-    picker.accept = "image/*";
-    picker.style.display = "none";
-    picker.id = "heroPicker";
-
-    document.body.appendChild(picker);
-
-    hero.addEventListener("click", () => picker.click());
-
-    picker.addEventListener("change", () => {
-      const file = picker.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = e => {
-        const uploadedImg = new Image();
-        uploadedImg.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-
-          const targetRatio = 16 / 9;
-          let cropWidth = uploadedImg.width;
-          let cropHeight = cropWidth / targetRatio;
-
-          if (cropHeight > uploadedImg.height) {
-            cropHeight = uploadedImg.height;
-            cropWidth = cropHeight * targetRatio;
-          }
-
-          const startX = (uploadedImg.width - cropWidth) / 2;
-          const startY = (uploadedImg.height - cropHeight) / 2;
-
-          canvas.width = 1920;
-          canvas.height = 1080;
-
-          ctx.drawImage(
-            uploadedImg,
-            startX, startY, cropWidth, cropHeight,
-            0, 0, canvas.width, canvas.height
-          );
-
-          const finalImage = canvas.toDataURL("image/jpeg", 0.9);
-          hero.style.backgroundImage = `url('${finalImage}')`;
-        };
-
-        uploadedImg.src = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function enableImageReplacement() {
-    const images = document.querySelectorAll("img");
-
-    images.forEach((img, index) => {
-      img.style.cursor = "pointer";
-
-      // create a unique picker per image (remove existing if present)
-      const existing = document.getElementById("imgPicker_" + index);
-      if (existing) existing.remove();
-
-      const picker = document.createElement("input");
-      picker.type = "file";
-      picker.accept = "image/*";
-      picker.style.display = "none";
-      picker.id = "imgPicker_" + index;
-
-      document.body.appendChild(picker);
-
-      img.addEventListener("click", () => picker.click());
-
-      picker.addEventListener("change", () => {
-        const file = picker.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = e => {
-          const uploadedImg = new Image();
-          uploadedImg.onload = () => {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-
-            const size = Math.min(uploadedImg.width, uploadedImg.height);
-            const startX = (uploadedImg.width - size) / 2;
-            const startY = (uploadedImg.height - size) / 2;
-
-            const outputSize = 600;
-            canvas.width = outputSize;
-            canvas.height = outputSize;
-
-            ctx.drawImage(
-              uploadedImg,
-              startX, startY, size, size,
-              0, 0, outputSize, outputSize
-            );
-
-            const finalImage = canvas.toDataURL("image/jpeg", 0.9);
-            img.src = finalImage;
-          };
-
-          uploadedImg.src = e.target.result;
-        };
-
-        reader.readAsDataURL(file);
-      });
-    });
-  }
-
-  function enableTextEditing() {
-    const editableSelectors = [
-      ".business_name",
-      ".tagline",
-      ".about_us p",
-      ".service-card p",
-      "h1", "h2", "h3","h4", "p", "span"
-    ];
-
-    const elements = document.querySelectorAll(editableSelectors.join(", "));
-
-    elements.forEach(el => {
-      if (el.closest(".sidebar")) return;
-
-      el.classList.add("editable-text");
-      el.style.cursor = "text";
-
-      el.addEventListener("click", (e) => {
-        e.stopPropagation();
-      });
-
-      el.addEventListener("click", () => {
-        if (el.isContentEditable) return;
-
-        el.contentEditable = "true";
-        el.focus();
-        document.execCommand("selectAll", false, null);
-
-        el.addEventListener("blur", () => {
-          el.contentEditable = "false";
-        }, { once: true });
-      });
-    });
-  }
-
-  /* ---------------------------
-     SAVE / LOAD Implementation
-     - Saves the contentArea innerHTML and hero background image (if any)
-     - Restores content and re-enables editing/image replacement
-  ----------------------------*/
-
-  const STORAGE_KEY = "trades_site_saved_v1";
-
-  function saveWebsite() {
-    const area = document.getElementById("Sav");
-    if (!area) return alert("Nothing to save.");
-
-    const hero = document.querySelector(".hero");
-    const heroBg = hero ? (hero.style.backgroundImage || "") : "";
-    const path = window.location.pathname;
-    const page = path.split("/").pop();
-
-    const payload = {
-      Link: page,
-      contentHTML: area.innerHTML,
-      heroBackground: heroBg,
-      //templateSelectorHidden: document.getElementById("templateSelector").style.display === "none",
-      savedAt: new Date().toISOString()
-    };
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-      alert("Website saved to localStorage.");
-    } catch (err) {
-      console.error(err);
-      alert("Failed to save. localStorage may be full or unavailable.");
-    }
-  }
-
-  function loadWebsite() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) {
-    alert("No saved website found.");
-    return;
-  }
-
-  let payload;
-  try {
-    payload = JSON.parse(raw);
-  } catch (err) {
-    console.error(err);
-    alert("Saved data is corrupted.");
-    return;
-  }
-
-  const path = window.location.pathname.split("/").pop() || "index.html";
-
-  // If we are NOT on the saved page, redirect to it
-  if (payload.Link && payload.Link !== path) {
-    localStorage.setItem("AUTO_LOAD", "true");
-    window.location.href = payload.Link;
-    return; // stop here — the next page will load the content
-  }
-
-  // If we ARE on the correct page, load the content
-  injectSavedContent(payload);
-}
-function injectSavedContent(payload) {
-  const area = document.getElementById("Sav");
-  area.innerHTML = payload.contentHTML || "";
-
-  const hero = document.querySelector(".hero");
-  if (hero && payload.heroBackground) {
-    hero.style.backgroundImage = payload.heroBackground;
-  }
-
-  enableImageReplacement();
-  enableHeroImageReplacement();
-  enableTextEditing();
-
-  rebindButtons(); // ← THIS FIXES YOUR ISSUE
-
-  alert("Website loaded from localStorage.");
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const shouldLoad = localStorage.getItem("AUTO_LOAD") === "true";
-  if (!shouldLoad) return;
-
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return;
-
-  const payload = JSON.parse(raw);
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
-
-  if (payload.Link === currentPage) {
-    injectSavedContent(payload);
-  }
-
-  // Clear the flag so it only loads once
-  localStorage.removeItem("AUTO_LOAD");
-});
-
-
-  /* ---------------------------
-     Panel button wiring
-  ----------------------------*/
-  document.getElementById("saveBtn").addEventListener("click", saveWebsite);
-  document.getElementById("loadBtn").addEventListener("click", loadWebsite);
-  document.getElementById("UploadBtn")?.addEventListener("click", publish);
-  document.getElementById("minifyBtn").addEventListener("click", () => {
-    const box = document.getElementById("saveLoadContainer");
-    const isCollapsed = box.getAttribute("data-collapsed") === "true";
-    if (isCollapsed) {
-      box.style.height = "";
-      box.setAttribute("data-collapsed", "false");
-    } else {
-      box.style.height = "40px";
-      box.setAttribute("data-collapsed", "true");
-    }
-  });
-
-  /* ---------------------------
-     Optional: load saved content automatically if present
-     (comment out if you prefer manual load only)
-  ----------------------------*/
-  // Uncomment the following lines to auto-load on page open:
-  // window.addEventListener("DOMContentLoaded", () => {
-  //   if (localStorage.getItem(STORAGE_KEY)) {
-  //     // Do not auto-load silently; ask user
-  //     if (confirm("A saved website was found. Load it now?")) {
-  //       loadWebsite();
-  //     }
-  //   }
-  // });
-  function rebindButtons() {
-  document.getElementById("saveBtn")?.addEventListener("click", saveWebsite);
-  document.getElementById("loadBtn")?.addEventListener("click", loadWebsite);
-  document.getElementById("UploadBtn")?.addEventListener("click", publish);
-
-}
-    async function publish() {
-    const area = document.getElementById("Sav").innerHTML;
-
-    const files = [
-        {
-            path: "index.html",
-            content: area
-        }
-    ];
-
-    uploadProject(files);
-}
-
-async function uploadProject(files) {
-  const res = await fetch("/api/github/upload", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ files })
-  });
-
-  const data = await res.json();
-  console.log(data);
-}
-
 
 
 </script>
-
-</div><input type="file" accept="image/*" id="imgPicker_0" style="display: none;"><input type="file" accept="image/*" id="imgPicker_1" style="display: none;"><input type="file" accept="image/*" id="imgPicker_2" style="display: none;"><input type="file" accept="image/*" id="imgPicker_3" style="display: none;"><input type="file" accept="image/*" id="imgPicker_4" style="display: none;"><input type="file" accept="image/*" id="imgPicker_5" style="display: none;"><input type="file" accept="image/*" id="imgPicker_6" style="display: none;"><input type="file" accept="image/*" id="imgPicker_7" style="display: none;"><input type="file" accept="image/*" id="imgPicker_8" style="display: none;"><input type="file" accept="image/*" id="imgPicker_9" style="display: none;"><input type="file" accept="image/*" id="imgPicker_10" style="display: none;"><input type="file" accept="image/*" id="imgPicker_11" style="display: none;"><input type="file" accept="image/*" id="imgPicker_12" style="display: none;">
+</body></html>
