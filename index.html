@@ -70,7 +70,36 @@
 
 <!----------------- Top Announcement Bar ---------------------------->
 <div id="shopify-section-announcement-bar" class="shopify-section section-announcement-bar">
+<div id="section-id-announcement-bar" class="announcement-bar announcement-bar--with-announcement" data-section-type="announcement-bar">
+    <style data-shopify="">
+      #section-id-announcement-bar {
+        --announcement-background: #f4cbdc;
+        --announcement-text: #4c4c4b;
+        --link-underline: rgba(76, 76, 75, 0.6);
+        --announcement-font-size: 12px;
+      }
+    </style>
 
+    <div class="container container--no-max">
+      <div class="announcement-bar__left desktop-only">
+      </div>
+
+      <div class="announcement-bar__middle"><div class="announcement-bar__announcements"><div class="announcement">
+                <div class="announcement__text"><h4 class="" style="cursor: text;">Enter Business Message Here </h4></div>
+              </div>
+
+              <div class="announcement announcement--inactive">
+                <div class="announcement__text"><h6>Enter Text Here</h6></div>
+              </div></div>
+
+          <div class="announcement-bar__announcement-controller">
+            <button class="announcement-button announcement-button--previous notabutton" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><title>Left</title><polyline points="15 18 9 12 15 6"></polyline></svg></button><button class="announcement-button announcement-button--next notabutton" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><title>Right</title><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+          </div></div>
+
+      <div class="announcement-bar__right desktop-only">
+</div>
+</div>
+</div>
 </div>
 <!---------------------------- Top Announcement Bar End ----------------------------------------->
 
@@ -86,7 +115,18 @@
         --text-2: #4c4c4b;
       }
     </style>
-    </div>
+    <div class="store-messages messages-2 desktop-only">
+      <div class="container cf"><div class="message message-1">
+
+                <h4 class="title" style="cursor: text;">Phone: +000 00 000 0000</h4>
+
+          </div><div class="message message-2">
+
+                <h4 class="title" style="cursor: text;">Email: info@YourEmail</h4>
+
+            <div class="fluff"></div>
+          </div></div>
+    </div></div>
 </div>
 <!----------------------------------------------------------- Contact Header End --------------------------------------->
   <main id="content" role="main">
@@ -123,33 +163,33 @@
 <!-------------------------------- Slider Start ----------------------------------------------->
  <div class="thg-slider-wrapper">
 
-
-
+<h2 class="thg-slider-title" style="cursor: text;">Enter Text Here</h2>
+<p class="thg-slider-subtitle" style="cursor: text;">Enter Text</p>
 
 <div class="thg-slider-container">
 
 <button class="thg-slider-btn prev">‹</button>
 
-<div class="thg-slider">
+<div class="thg-slider" style="transform: translateX(-100%);">
 
 <div class="thg-slide">
 <img src="images/img_1.jpg" style="cursor: pointer;">
-
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
 </div>
 
 <div class="thg-slide">
 <img src="images/img_2.jpg" style="cursor: pointer;">
-
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
 </div>
 
 <div class="thg-slide">
 <img src="images/img_3.jpg" style="cursor: pointer;">
-
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
 </div>
 
 <div class="thg-slide">
 <img src="images/img_4.jpg" style="cursor: pointer;">
-
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
 </div>
 
 </div>
@@ -244,9 +284,9 @@ right:10px;
   <div class="container">
     <div class="align-center spaced-column">
 
-              
+              <h1 class="majortitle in-content" style="cursor: text;">Enter Text Here</h1>
 
-            <div class="rte lightly-spaced-row"></div>
+            <div class="rte lightly-spaced-row"><h4 class="" style="cursor: text;"><em>Enter Text Here</em></h4></div>
 
     </div>
   </div>
@@ -269,17 +309,22 @@ right:10px;
     }</style><div class="container">
     <div class="testimonial-list testimonial-list--image-right testimonial-list--with-images" data-testimonial-count="3" data-autoplay="true" data-autoplay-speed="5000">
 
-        <div class="subheading"></div>
+        <div class="subheading"><p class="" style="cursor: text;">Enter Reviews From Customers</p></div>
 
       <div class="testimonial-list__inner"><div class="testimonial testimonial-1">
             <div class="testimonial__column testimonial__column--text">
 
-                <div class="subheading"></div>
+                <div class="subheading"><p class="" style="cursor: text;">Enter Reviews From Customers</p></div>
 
-              <div class="testimonial__content"><div class="testimonial__star-rating heading-font"></div><div class="testimonial__text">
-                    
+              <div class="testimonial__content"><div class="testimonial__star-rating heading-font"><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</span></div><div class="testimonial__text">
+                    <p class="testimonial__blockquote heading-font" style="cursor: text;">Enter The customers review here</p>
                   </div><div class="testimonial__author">
-                    
+                    <p class="" style="cursor: text;">— Enter Customers Name Here or County</p>
                   </div></div>
             </div>
 
@@ -309,9 +354,9 @@ right:10px;
   <div class="container">
     <div class="align-center spaced-column">
 
-              
+              <h2 class="majortitle in-content h1-style" style="cursor: text;">Social Tag Text</h2>
 
-            <div class="rte lightly-spaced-row large-text"></div>
+            <div class="rte lightly-spaced-row large-text"><p class="" style="cursor: text;">TAG us in your pictures on Instagram @your business tag or email them to yourbusiness@email</p></div>
 
     </div>
   </div>
@@ -424,7 +469,7 @@ right:10px;
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Enter Your Business Address here or leave empty.</p></div>
 
                 </div>
 
@@ -446,7 +491,7 @@ right:10px;
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Email: info@YourEmail</p></div>
 
                 </div>
 
@@ -463,7 +508,7 @@ right:10px;
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Phone: +353 00 000 0000</p></div>
 
                 </div>
 
@@ -483,7 +528,7 @@ right:10px;
 
                   </div>
 
-                  <div class="icon-with-caption__text heading-font h6-style align-center"></div>
+                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Enter Text</p></div>
 
                 </div>
 
@@ -514,31 +559,4 @@ right:10px;
 
 
 
-<script type="text/javascript">
-    (function(){
-      const slider = document.querySelector(".thg-slider");
-      const slides = slider ? slider.querySelectorAll(".thg-slide") : [];
-      let idx = 0;
-      function goTo(i){
-        if(!slider || slides.length === 0) return;
-        idx = (i + slides.length) % slides.length;
-        slider.style.transform = 'translateX(-' + (idx * 100) + '%)';
-      }
-      document.querySelectorAll(".next").forEach(btn => btn.addEventListener("click", (e)=>{ e.preventDefault(); goTo(idx+1); }));
-      document.querySelectorAll(".prev").forEach(btn => btn.addEventListener("click", (e)=>{ e.preventDefault(); goTo(idx-1); }));
-      if(slider){
-        let startX = 0, endX = 0;
-        slider.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
-        slider.addEventListener("touchmove", e => { endX = e.touches[0].clientX; });
-        slider.addEventListener("touchend", () => {
-          const diff = startX - endX;
-          if(Math.abs(diff) > 50){
-            if(diff > 0) goTo(idx+1); else goTo(idx-1);
-          }
-        });
-        slider.style.transition = 'transform 0.4s ease';
-      }
-      // set initial transform
-      if(slider) slider.style.transform = 'translateX(0%)';
-    })();
-  </script></body></html>
+</body></html>
