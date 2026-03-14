@@ -63,7 +63,144 @@
 }
 
 </style>
-<link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"></head>
+<link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"><script id="RequiredScript">
+(function () {
+  // Unified slider module
+  function createUnifiedSlider(containerSelector = ".thg-slider", slideSelector = ".thg-slide", options = {}) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return null;
+
+    const slides = Array.from(container.querySelectorAll(slideSelector));
+    if (slides.length === 0) return null;
+
+    // Prevent double initialization
+    if (container.__unifiedSliderInitialized) return container.__unifiedSliderInstance || null;
+    container.__unifiedSliderInitialized = true;
+
+    // Wrap slides in a viewport if not already using overflow hidden
+    container.style.overflow = "hidden";
+    container.style.position = container.style.position || "relative";
+
+    // Create an inner track if not present to handle transforms
+    let track = container.querySelector(".unified-slider-track");
+    if (!track) {
+      track = document.createElement("div");
+      track.className = "unified-slider-track";
+      // Move slide elements into track
+      slides.forEach(s => track.appendChild(s));
+      // Reset container content and append track
+      container.innerHTML = "";
+      container.appendChild(track);
+    }
+
+    // Basic styles for track and slides (kept minimal; prefer external CSS)
+    track.style.display = "flex";
+    track.style.transition = "transform 400ms ease";
+    track.style.willChange = "transform";
+    track.style.width = `${slides.length * 100}%`;
+
+    slides.forEach(slide => {
+      slide.style.flex = `0 0 ${100 / slides.length}%`;
+      slide.style.boxSizing = "border-box";
+    });
+
+    let index = 0;
+    const state = { index, length: slides.length };
+
+    function updateTransform() {
+      track.style.transform = `translateX(-${(state.index * 100) / state.length}%)`;
+    }
+
+    function next() {
+      state.index = (state.index + 1) % state.length;
+      updateTransform();
+    }
+
+    function prev() {
+      state.index = (state.index - 1 + state.length) % state.length;
+      updateTransform();
+    }
+
+    function goTo(i) {
+      state.index = Math.max(0, Math.min(state.length - 1, i));
+      updateTransform();
+    }
+
+    // Button bindings (support both sets of selectors)
+    function bindButton(selector, handler) {
+      const btn = document.querySelector(selector);
+      if (!btn) return;
+      // Use a namespaced property to avoid duplicate listeners
+      if (!btn.__unifiedSliderBound) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          handler();
+        });
+        btn.__unifiedSliderBound = true;
+      }
+    }
+
+    bindButton(".next", next);
+    bindButton(".prev", prev);
+    bindButton(".thg-right", next);
+    bindButton(".thg-left", prev);
+
+    // Touch support (simple swipe)
+    let startX = 0;
+    let isTouching = false;
+    container.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) return;
+      isTouching = true;
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    container.addEventListener("touchmove", (e) => {
+      if (!isTouching) return;
+      // optional: implement drag-to-follow behavior here
+    }, { passive: true });
+
+    container.addEventListener("touchend", (e) => {
+      if (!isTouching) return;
+      isTouching = false;
+      const endX = (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].clientX) || startX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) next(); else prev();
+      }
+    });
+
+    // Keyboard navigation
+    container.tabIndex = container.tabIndex >= 0 ? container.tabIndex : 0;
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    // Expose instance for later use
+    const instance = { next, prev, goTo, getIndex: () => state.index, length: state.length };
+    container.__unifiedSliderInstance = instance;
+
+    // Initial transform
+    updateTransform();
+
+    return instance;
+  }
+
+  // Initialize on DOMContentLoaded
+  function initUnifiedSlider() {
+    createUnifiedSlider(".thg-slider", ".thg-slide");
+  }
+
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", initUnifiedSlider);
+  } else {
+    initUnifiedSlider();
+  }
+
+  // Expose init function globally in case you need to re-init after injecting content
+  window.initUnifiedSlider = initUnifiedSlider;
+})();
+</script></head>
 
 <body class="template-index" data-cc-animate-timeout="0" id="Sav">
 
@@ -163,36 +300,26 @@
 <!-------------------------------- Slider Start ----------------------------------------------->
  <div class="thg-slider-wrapper">
 
-<h2 class="thg-slider-title" style="cursor: text;">Tables</h2>
-<p class="thg-slider-subtitle" style="cursor: text;">Table</p>
+<h2 class="thg-slider-title" style="cursor: text;">Enter Text Here</h2>
+<p class="thg-slider-subtitle" style="cursor: text;">Enter Text</p>
 
 <div class="thg-slider-container">
 
 <button class="thg-slider-btn prev">‹</button>
 
-<div class="thg-slider" style="transform: translateX(0%);">
-
-<div class="thg-slide">
+<div class="thg-slider" tabindex="0" style="overflow: hidden; position: relative; transform: translateX(0%);"><div class="unified-slider-track" style="display: flex; transition: transform 400ms; will-change: transform; width: 400%; transform: translateX(0%);"><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
 <img src="images/img_1.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Table 1</p>
-</div>
-
-<div class="thg-slide">
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
+</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
 <img src="images/img_2.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-<div class="thg-slide">
+</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
 <img src="images/img_3.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-<div class="thg-slide">
+</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
 <img src="images/img_4.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-</div>
+</div></div></div>
 
 <button class="thg-slider-btn next">›</button>
 
@@ -284,7 +411,7 @@ right:10px;
   <div class="container">
     <div class="align-center spaced-column">
 
-              <h1 class="majortitle in-content" style="cursor: text;">TRYYYYYYYYYYY</h1>
+              <h1 class="majortitle in-content" style="cursor: text;">Enter Text Here</h1>
 
             <div class="rte lightly-spaced-row"><h4 class="" style="cursor: text;"><em>Enter Text Here</em></h4></div>
 
@@ -555,6 +682,8 @@ right:10px;
     </div>
 
     
+
+
 
 
 
