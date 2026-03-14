@@ -63,7 +63,7 @@
 }
 
 </style>
-<link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"><script src="scripts/slider.js" defer=""></script></head>
+<link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"></head>
 
 <body class="template-index" data-cc-animate-timeout="0" id="Sav">
 
@@ -163,18 +163,18 @@
 <!-------------------------------- Slider Start ----------------------------------------------->
  <div class="thg-slider-wrapper">
 
-<h2 class="thg-slider-title" style="cursor: text;">Tables</h2>
-<p class="thg-slider-subtitle" style="cursor: text;">Table</p>
+<h2 class="thg-slider-title" style="cursor: text;">Enter Text Here</h2>
+<p class="thg-slider-subtitle" style="cursor: text;">Enter Text</p>
 
 <div class="thg-slider-container">
 
 <button class="thg-slider-btn prev">‹</button>
 
-<div class="thg-slider" style="transform: translateX(0%);">
+<div class="thg-slider">
 
 <div class="thg-slide">
 <img src="images/img_1.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Table 1</p>
+<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
 </div>
 
 <div class="thg-slide">
@@ -557,6 +557,66 @@ right:10px;
     
 
 
+<script id="RequiredScript">
+  function initSlider() {
+  const carousel = document.querySelector(".thg-slider");
+  const prev = document.querySelector(".thg-left");
+  const next = document.querySelector(".thg-right");
+
+  if (!carousel) {
+    console.warn("Slider not found — skipping slider init.");
+    return;
+  }
+
+  const getSlideWidth = () => {
+    const slide = carousel.querySelector(".thg-slide");
+    if (!slide) return 300;
+
+    const style = window.getComputedStyle(slide);
+    const margin =
+      parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+
+    return slide.getBoundingClientRect().width + margin;
+  };
+
+  if (next) {
+    next.addEventListener("click", (e) => {
+      e.preventDefault();
+      carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
+    });
+  }
+
+  if (prev) {
+    prev.addEventListener("click", (e) => {
+      e.preventDefault();
+      carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
+    });
+  }
+
+  let startX = 0;
+  let endX = 0;
+
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchmove", (e) => {
+    endX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchend", () => {
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
+      } else {
+        carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
+      }
+    }
+  });
+}
+</script>
 
 
 </body></html>
