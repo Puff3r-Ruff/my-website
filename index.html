@@ -64,142 +64,90 @@
 
 </style>
 <link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"><script id="RequiredScript">
-(function () {
-  // Unified slider module
-  function createUnifiedSlider(containerSelector = ".thg-slider", slideSelector = ".thg-slide", options = {}) {
-    const container = document.querySelector(containerSelector);
-    if (!container) return null;
+function initSlider() {
+  const carousel = document.querySelector(".thg-slider");
+  const prev = document.querySelector(".thg-left");
+  const next = document.querySelector(".thg-right");
 
-    const slides = Array.from(container.querySelectorAll(slideSelector));
-    if (slides.length === 0) return null;
+  if (!carousel) {
+    console.warn("Slider not found — skipping slider init.");
+    return;
+  }
 
-    // Prevent double initialization
-    if (container.__unifiedSliderInitialized) return container.__unifiedSliderInstance || null;
-    container.__unifiedSliderInitialized = true;
+  const getSlideWidth = () => {
+    const slide = carousel.querySelector(".thg-slide");
+    if (!slide) return 300;
 
-    // Wrap slides in a viewport if not already using overflow hidden
-    container.style.overflow = "hidden";
-    container.style.position = container.style.position || "relative";
+    const style = window.getComputedStyle(slide);
+    const margin =
+      parseFloat(style.marginLeft) + parseFloat(style.marginRight);
 
-    // Create an inner track if not present to handle transforms
-    let track = container.querySelector(".unified-slider-track");
-    if (!track) {
-      track = document.createElement("div");
-      track.className = "unified-slider-track";
-      // Move slide elements into track
-      slides.forEach(s => track.appendChild(s));
-      // Reset container content and append track
-      container.innerHTML = "";
-      container.appendChild(track);
-    }
+    return slide.getBoundingClientRect().width + margin;
+  };
 
-    // Basic styles for track and slides (kept minimal; prefer external CSS)
-    track.style.display = "flex";
-    track.style.transition = "transform 400ms ease";
-    track.style.willChange = "transform";
-    track.style.width = `${slides.length * 100}%`;
-
-    slides.forEach(slide => {
-      slide.style.flex = `0 0 ${100 / slides.length}%`;
-      slide.style.boxSizing = "border-box";
+  if (next) {
+    next.addEventListener("click", (e) => {
+      e.preventDefault();
+      carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
     });
+  }
 
-    let index = 0;
-    const state = { index, length: slides.length };
+  if (prev) {
+    prev.addEventListener("click", (e) => {
+      e.preventDefault();
+      carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
+    });
+  }
 
-    function updateTransform() {
-      track.style.transform = `translateX(-${(state.index * 100) / state.length}%)`;
-    }
+  let startX = 0;
+  let endX = 0;
 
-    function next() {
-      state.index = (state.index + 1) % state.length;
-      updateTransform();
-    }
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
 
-    function prev() {
-      state.index = (state.index - 1 + state.length) % state.length;
-      updateTransform();
-    }
+  carousel.addEventListener("touchmove", (e) => {
+    endX = e.touches[0].clientX;
+  });
 
-    function goTo(i) {
-      state.index = Math.max(0, Math.min(state.length - 1, i));
-      updateTransform();
-    }
+  carousel.addEventListener("touchend", () => {
+    const diff = startX - endX;
 
-    // Button bindings (support both sets of selectors)
-    function bindButton(selector, handler) {
-      const btn = document.querySelector(selector);
-      if (!btn) return;
-      // Use a namespaced property to avoid duplicate listeners
-      if (!btn.__unifiedSliderBound) {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          handler();
-        });
-        btn.__unifiedSliderBound = true;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
+      } else {
+        carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
       }
     }
+  });
+}
+function initBasicSlider() {
+  const slider = document.querySelector(".thg-slider");
+  const slides = document.querySelectorAll(".thg-slide");
+  const nextBtn = document.querySelector(".next");
+  const prevBtn = document.querySelector(".prev");
 
-    bindButton(".next", next);
-    bindButton(".prev", prev);
-    bindButton(".thg-right", next);
-    bindButton(".thg-left", prev);
+  if (!slider || slides.length === 0) return;
 
-    // Touch support (simple swipe)
-    let startX = 0;
-    let isTouching = false;
-    container.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) return;
-      isTouching = true;
-      startX = e.touches[0].clientX;
-    }, { passive: true });
+  let index = 0;
 
-    container.addEventListener("touchmove", (e) => {
-      if (!isTouching) return;
-      // optional: implement drag-to-follow behavior here
-    }, { passive: true });
+  nextBtn?.addEventListener("click", () => {
+    index++;
+    if (index >= slides.length) index = 0;
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  });
 
-    container.addEventListener("touchend", (e) => {
-      if (!isTouching) return;
-      isTouching = false;
-      const endX = (e.changedTouches && e.changedTouches[0] && e.changedTouches[0].clientX) || startX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) next(); else prev();
-      }
-    });
-
-    // Keyboard navigation
-    container.tabIndex = container.tabIndex >= 0 ? container.tabIndex : 0;
-    container.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
-
-    // Expose instance for later use
-    const instance = { next, prev, goTo, getIndex: () => state.index, length: state.length };
-    container.__unifiedSliderInstance = instance;
-
-    // Initial transform
-    updateTransform();
-
-    return instance;
-  }
-
-  // Initialize on DOMContentLoaded
-  function initUnifiedSlider() {
-    createUnifiedSlider(".thg-slider", ".thg-slide");
-  }
-
-  if (document.readyState === "loading") {
-    window.addEventListener("DOMContentLoaded", initUnifiedSlider);
-  } else {
-    initUnifiedSlider();
-  }
-
-  // Expose init function globally in case you need to re-init after injecting content
-  window.initUnifiedSlider = initUnifiedSlider;
-})();
+  prevBtn?.addEventListener("click", () => {
+    index--;
+    if (index < 0) index = slides.length - 1;
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  });
+}
+window.addEventListener("DOMContentLoaded", () => {
+    initSlider();        // your custom slider
+    initBasicSlider();
+  });
 </script></head>
 
 <body class="template-index" data-cc-animate-timeout="0" id="Sav">
@@ -307,19 +255,29 @@
 
 <button class="thg-slider-btn prev">‹</button>
 
-<div class="thg-slider" tabindex="0" style="overflow: hidden; position: relative; transform: translateX(0%);"><div class="unified-slider-track" style="display: flex; transition: transform 400ms; will-change: transform; width: 400%; transform: translateX(0%);"><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
+<div class="thg-slider" style="transform: translateX(0%);">
+
+<div class="thg-slide">
 <img src="images/img_1.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
+</div>
+
+<div class="thg-slide">
 <img src="images/img_2.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
+</div>
+
+<div class="thg-slide">
 <img src="images/img_3.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div><div class="thg-slide" style="flex: 0 0 25%; box-sizing: border-box;">
+</div>
+
+<div class="thg-slide">
 <img src="images/img_4.jpg" style="cursor: pointer;">
 <p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div></div></div>
+</div>
+
+</div>
 
 <button class="thg-slider-btn next">›</button>
 
