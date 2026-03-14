@@ -65,40 +65,12 @@
 </style>
 <link rel="stylesheet" href="chrome-extension://413385a2-13c7-4153-b79e-ff9882e6ea4c/app/content-style.css"></head>
 
-<body class="template-index
-" data-cc-animate-timeout="0" id="Sav">
+<body class="template-index" data-cc-animate-timeout="0" id="Sav">
 
 
 <!----------------- Top Announcement Bar ---------------------------->
 <div id="shopify-section-announcement-bar" class="shopify-section section-announcement-bar">
-<div id="section-id-announcement-bar" class="announcement-bar announcement-bar--with-announcement" data-section-type="announcement-bar">
-    <style data-shopify="">
-      #section-id-announcement-bar {
-        --announcement-background: #f4cbdc;
-        --announcement-text: #4c4c4b;
-        --link-underline: rgba(76, 76, 75, 0.6);
-        --announcement-font-size: 12px;
-      }
-    </style>
 
-    <div class="container container--no-max">
-      <div class="announcement-bar__left desktop-only">
-      </div>
-
-      <div class="announcement-bar__middle"><div class="announcement-bar__announcements"><div class="announcement">
-                <div class="announcement__text"></div>
-              </div>
-
-              <div class="announcement announcement--inactive">
-                <div class="announcement__text"><h6>Enter Text Here</h6></div>
-              </div></div>
-
-          </div>
-
-      <div class="announcement-bar__right desktop-only">
-</div>
-</div>
-</div>
 </div>
 <!---------------------------- Top Announcement Bar End ----------------------------------------->
 
@@ -114,18 +86,7 @@
         --text-2: #4c4c4b;
       }
     </style>
-    <div class="store-messages messages-2 desktop-only">
-      <div class="container cf"><div class="message message-1">
-
-                
-
-          </div><div class="message message-2">
-
-                
-
-            <div class="fluff"></div>
-          </div></div>
-    </div></div>
+    </div>
 </div>
 <!----------------------------------------------------------- Contact Header End --------------------------------------->
   <main id="content" role="main">
@@ -285,7 +246,7 @@ right:10px;
 
               
 
-            <div class="rte lightly-spaced-row "></div>
+            <div class="rte lightly-spaced-row"></div>
 
     </div>
   </div>
@@ -540,7 +501,7 @@ right:10px;
 </div>
       <div id="shopify-section-footer" class="shopify-section section-footer"><div data-section-type="footer">
 
-<div class="container container--no-max section-footer__row-container ">
+<div class="container container--no-max section-footer__row-container">
     
   </div>
 </div>
@@ -553,4 +514,31 @@ right:10px;
 
 
 
-</body></html>
+<script type="text/javascript">
+    (function(){
+      const slider = document.querySelector(".thg-slider");
+      const slides = slider ? slider.querySelectorAll(".thg-slide") : [];
+      let idx = 0;
+      function goTo(i){
+        if(!slider || slides.length === 0) return;
+        idx = (i + slides.length) % slides.length;
+        slider.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      }
+      document.querySelectorAll(".next").forEach(btn => btn.addEventListener("click", (e)=>{ e.preventDefault(); goTo(idx+1); }));
+      document.querySelectorAll(".prev").forEach(btn => btn.addEventListener("click", (e)=>{ e.preventDefault(); goTo(idx-1); }));
+      if(slider){
+        let startX = 0, endX = 0;
+        slider.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+        slider.addEventListener("touchmove", e => { endX = e.touches[0].clientX; });
+        slider.addEventListener("touchend", () => {
+          const diff = startX - endX;
+          if(Math.abs(diff) > 50){
+            if(diff > 0) goTo(idx+1); else goTo(idx-1);
+          }
+        });
+        slider.style.transition = 'transform 0.4s ease';
+      }
+      // set initial transform
+      if(slider) slider.style.transform = 'translateX(0%)';
+    })();
+  </script></body></html>
