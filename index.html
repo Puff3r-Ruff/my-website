@@ -1,645 +1,147 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr"><head>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Website Template</title>
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="chrome-extension://07251cbd-b0bf-4275-8dd7-95a947b4bd7c/app/content-style.css"><script id="RequiredScript">
 
-  <title>
-    Your Custom Website
-  </title>
+/* -------------------------
+PAGE SWITCHING SYSTEM
+------------------------- */
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+const contentArea = document.getElementById("content-area");
+const aboutBtn = document.getElementById("about-btn");
+const homeBtn = document.getElementById("home-btn");
 
-<link href="styles.css" rel="stylesheet" type="text/css" media="all">
-<style>
+/* Save original home */
+let savedHomeHTML = contentArea.innerHTML;
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 14px 20px;
-        background: #0f182a;
-        border-bottom: 1px solid #e5e5e5;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+/* About page HTML */
 
-    .back-btn {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        font-weight: 500;
-        transition: opacity 0.2s ease;
-    }
+const aboutPage = `
+<section class="about">
+<h2>About Us</h2>
+<p>
+At Salon Luxe we believe your hair is your signature.
+With over 10 years of experience our stylists provide
+personalised services designed to bring out confidence
+and natural beauty.
+</p>
+</section>
+`;
 
-    .back-btn:hover {
-        opacity: 0.6;
-    }
 
-    .back-btn i {
-        font-size: 20px;
-        margin-right: 6px;
-    }
+/* Switch to About */
 
-    .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* space between text and logo */
+aboutBtn.onclick = function(e){
+
+e.preventDefault();
+
+/* Save edited home before leaving */
+savedHomeHTML = contentArea.innerHTML;
+
+/* Load about */
+contentArea.innerHTML = aboutPage;
+
+homeBtn.style.display = "inline-block";
+
+initPage();
+
+};
+
+
+/* Switch back to Home */
+
+homeBtn.onclick = function(e){
+
+e.preventDefault();
+
+/* Restore saved home */
+contentArea.innerHTML = savedHomeHTML;
+
+homeBtn.style.display = "none";
+
+initPage();
+
+};
+
+
+
+/* -------------------------
+INIT PAGE FEATURES
+------------------------- */
+
+function initPage(){
+  
+enableFormHandler();
+
 }
 
-.logo-text {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff; /* adjust to match your theme */
+
+
+/* -------------------------
+TEXT EDITING
+------------------------- */
+
+
+
+/* -------------------------
+FORM HANDLER
+------------------------- */
+
+function enableFormHandler(){
+
+const form=document.querySelector(".contact-form");
+
+if(!form) return;
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("Appointment request sent!");
+
+form.reset();
+
+});
+
 }
 
-.logo img {
-    height: 42px;
-    object-fit: contain;
-}
 
-</style>
-<script id="RequiredScript">
-function initSlider() {
-  const carousel = document.querySelector(".thg-slider");
-  const prev = document.querySelector(".thg-left");
-  const next = document.querySelector(".thg-right");
+/* Run once on load */
 
-  if (!carousel) {
-    console.warn("Slider not found — skipping slider init.");
-    return;
-  }
+initPage();
 
-  const getSlideWidth = () => {
-    const slide = carousel.querySelector(".thg-slide");
-    if (!slide) return 300;
-
-    const style = window.getComputedStyle(slide);
-    const margin =
-      parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-
-    return slide.getBoundingClientRect().width + margin;
-  };
-
-  if (next) {
-    next.addEventListener("click", (e) => {
-      e.preventDefault();
-      carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
-    });
-  }
-
-  if (prev) {
-    prev.addEventListener("click", (e) => {
-      e.preventDefault();
-      carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
-    });
-  }
-
-  let startX = 0;
-  let endX = 0;
-
-  carousel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchmove", (e) => {
-    endX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchend", () => {
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
-      } else {
-        carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
-      }
-    }
-  });
-}
-function initBasicSlider() {
-  const slider = document.querySelector(".thg-slider");
-  const slides = document.querySelectorAll(".thg-slide");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
-
-  if (!slider || slides.length === 0) return;
-
-  let index = 0;
-
-  nextBtn?.addEventListener("click", () => {
-    index++;
-    if (index >= slides.length) index = 0;
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  });
-
-  prevBtn?.addEventListener("click", () => {
-    index--;
-    if (index < 0) index = slides.length - 1;
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  });
-}
-window.addEventListener("DOMContentLoaded", () => {
-    initSlider();        // your custom slider
-    initBasicSlider();
-  });
 </script></head>
 
-<body class="template-index" data-cc-animate-timeout="0" id="Sav">
+<body id="Sav">
+
+<header class="header">
+<div class="logo">Enter Logo Text</div>
 
 
-<!----------------- Top Announcement Bar ---------------------------->
-<div id="shopify-section-announcement-bar" class="shopify-section section-announcement-bar">
-<div id="section-id-announcement-bar" class="announcement-bar announcement-bar--with-announcement" data-section-type="announcement-bar">
-    <style data-shopify="">
-      #section-id-announcement-bar {
-        --announcement-background: #f4cbdc;
-        --announcement-text: #4c4c4b;
-        --link-underline: rgba(76, 76, 75, 0.6);
-        --announcement-font-size: 12px;
-      }
-    </style>
 
-    <div class="container container--no-max">
-      <div class="announcement-bar__left desktop-only">
-      </div>
-
-      <div class="announcement-bar__middle"><div class="announcement-bar__announcements"><div class="announcement">
-                <div class="announcement__text"><h4 class="" style="cursor: text;">Enter Business Message Here </h4></div>
-              </div>
-
-              <div class="announcement announcement--inactive">
-                <div class="announcement__text"><h6>Enter Text Here</h6></div>
-              </div></div>
-
-          <div class="announcement-bar__announcement-controller">
-            <button class="announcement-button announcement-button--previous notabutton" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><title>Left</title><polyline points="15 18 9 12 15 6"></polyline></svg></button><button class="announcement-button announcement-button--next notabutton" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><title>Right</title><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-          </div></div>
-
-      <div class="announcement-bar__right desktop-only">
-</div>
-</div>
-</div>
-</div>
-<!---------------------------- Top Announcement Bar End ----------------------------------------->
-
-<!------------------------------------------------------------------------------------ header end ----------------------------------------------------->
-
-<!---------------------------------------------------------- Contact Header ---------------------------------------->
-<div id="shopify-section-store-messages" class="shopify-section section-store-messages">
-<div id="section-id-store-messages" data-section-type="store-messages">
-    <style data-shopify="">
-      #section-id-store-messages {
-        --background: #f4f6f8;
-        --text-1: #171717;
-        --text-2: #4c4c4b;
-      }
-    </style>
-    <div class="store-messages messages-2 desktop-only">
-      <div class="container cf"><div class="message message-1">
-
-                <h4 class="title" style="cursor: text;">Phone: +000 <a href="tel:00 000 0000">00 000 0000</a></h4>
-
-          </div><div class="message message-2">
-
-                <h4 class="title" style="cursor: text;">Email: info@YourEmail</h4>
-
-            <div class="fluff"></div>
-          </div></div>
-    </div></div>
-</div>
-<!----------------------------------------------------------- Contact Header End --------------------------------------->
-  <main id="content" role="main">
-    <div class="container cf">
-
-      <div id="shopify-section-template--18568265924941__image_with_text_overlay_i4XTzH" class="shopify-section section-image-with-text-overlay"><div id="section-id-template--18568265924941__image_with_text_overlay_i4XTzH" data-section-type="image-with-text-overlay">
-  <style data-shopify="">
-#section-id-template--18568265924941__image_with_text_overlay_i4XTzH .fixed-height-item {
-      height: 600px;
-    }#section-id-template--18568265924941__image_with_text_overlay_i4XTzH .overlay-text__title {
-      font-size: 50px;
-    }
-
-    @media (min-width: 768px) {#section-id-template--18568265924941__image_with_text_overlay_i4XTzH .fixed-height-item {
-        height: 1000px;
-      }#section-id-template--18568265924941__image_with_text_overlay_i4XTzH .overlay-text__title {font-size: 58.8px;
-      }
-    }
-    @media (min-width: 1100px) {
-      #section-id-template--18568265924941__image_with_text_overlay_i4XTzH .overlay-text__title {
-        font-size: 84px;
-      }
-    }
-  </style>
-
-<!-------------------------------------------- Main Image ------------------------------------------>
-<div class="height--fixed image-overlay image-overlay--bg-full">
-    <img src="images/img_0.jpg" alt="Image" class="image-overlay__img" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
-</div>
-<!-----------------------------------------------Main Image End ---------------------------------->
-</div></div>
-</div>
-
-<!-------------------------------- Slider Start ----------------------------------------------->
- <div class="thg-slider-wrapper">
-
-<h2 class="thg-slider-title" style="cursor: text;">Enter Text Here</h2>
-<p class="thg-slider-subtitle" style="cursor: text;">Enter Text</p>
-
-<div class="thg-slider-container">
-
-<button class="thg-slider-btn prev">‹</button>
-
-<div class="thg-slider">
-
-<div class="thg-slide">
-<img src="images/img_1.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-<div class="thg-slide">
-<img src="images/img_2.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-<div class="thg-slide">
-<img src="images/img_3.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-<div class="thg-slide">
-<img src="images/img_4.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
-</div>
-
-</div>
-
-<button class="thg-slider-btn next">›</button>
-
-</div>
-</div>
-
-<style>
-.thg-slider-wrapper{
-width:100%;
-margin:40px auto;
-text-align:center;
-}
-
-/* container */
-.thg-slider-container{
-position:relative;
-overflow:hidden;
-max-width:1100px;
-margin:auto;
-}
-
-/* slider track */
-.thg-slider{
-display:flex;
-transition:transform 0.4s ease;
-}
-
-/* slide */
-.thg-slide{
-min-width:100%;
-box-sizing:border-box;
-padding:0 10px;
-}
-
-/* image sizing */
-.thg-slide img{
-width:100%;
-max-width:900px;
-margin:auto;
-aspect-ratio:4/3;
-object-fit:cover;
-display:block;
-border-radius:10px;
-}
-
-/* label */
-.thg-slide-label{
-background:white;
-padding:14px;
-font-weight:500;
-text-align:center;
-}
-
-/* arrows */
-.thg-slider-btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:black;
-color:white;
-border:none;
-font-size:28px;
-padding:8px 14px;
-cursor:pointer;
-z-index:10;
-opacity:0.7;
-border-radius:6px;
-}
-
-.thg-slider-btn:hover{
-opacity:1;
-}
-
-/* arrow positions */
-.prev{
-left:10px;
-}
-
-.next{
-right:10px;
-}
-
-</style>
-<!------------------------------------- slider image end --------------------------------------->
+</header>
 
 
-<!------------------------------------ Text Input Section --------------------------------------->
-<div id="shopify-section-template--18568265924941__1635927863703110df" class="shopify-section section-rich-text"><div class="article fully-spaced-row--medium">
-  <div class="container">
-    <div class="align-center spaced-column">
-
-              <h1 class="majortitle in-content" style="cursor: text;">Enter Text Here</h1>
-
-            <div class="rte lightly-spaced-row"><h4 class="" style="cursor: text;"><em>Enter Text Here</em></h4></div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-
-<!------------------------------------ Customer Review Section --------------------------------------->
-<div id="shopify-section-template--18568265924941__9aaed622-f83b-4236-89fc-6822fdc7916b" class="shopify-section section-testimonials"><div id="section-id-template--18568265924941__9aaed622-f83b-4236-89fc-6822fdc7916b" class="fully-spaced-row--medium" data-section-type="testimonials"><style data-shopify="">#section-id-template--18568265924941__9aaed622-f83b-4236-89fc-6822fdc7916b .testimonial__blockquote {
-      font-size: 20px;
-    }
-    @media (min-width: 768px) {
-      #section-id-template--18568265924941__9aaed622-f83b-4236-89fc-6822fdc7916b .testimonial__blockquote {font-size: 21.0px;
-      }
-    }
-    @media (min-width: 1100px) {
-      #section-id-template--18568265924941__9aaed622-f83b-4236-89fc-6822fdc7916b .testimonial__blockquote {
-        font-size: 30px;
-      }
-    }</style><div class="container">
-    <div class="testimonial-list testimonial-list--image-right testimonial-list--with-images" data-testimonial-count="3" data-autoplay="true" data-autoplay-speed="5000">
-
-        <div class="subheading"><p class="" style="cursor: text;">Enter Reviews From Customers</p></div>
-
-      <div class="testimonial-list__inner"><div class="testimonial testimonial-1">
-            <div class="testimonial__column testimonial__column--text">
-
-                <div class="subheading"><p class="" style="cursor: text;">Enter Reviews From Customers</p></div>
-
-              <div class="testimonial__content"><div class="testimonial__star-rating heading-font"><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span><span class="testimonial__star" style="cursor: text;"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-</span></div><div class="testimonial__text">
-                    <p class="testimonial__blockquote heading-font" style="cursor: text;">Enter The customers review here</p>
-                  </div><div class="testimonial__author">
-                    <p class="" style="cursor: text;">— Enter Customers Name Here or County</p>
-                  </div></div>
-            </div>
-
-              <div class="testimonial__column testimonial__column--image">
-                <figure class="testimonial__image-with-caption"><div class="testimonial__image-wrapper">
-
-<div class="rimage-outer-wrapper">
-  <div class="rimage-wrapper" style="padding-top:100.0%">
-    <img class="rimage__image lazyload--manual fade-in cover" src="images/img_5.jpg" alt="" style="object-position: 63.7339% 52.376%; cursor: pointer;">
-  </div>
+<div id="content-area">
+<section class="about">
+<h2>About Us</h2>
+<p>
+At Salon Luxe we believe your hair is your signature.
+With over 10 years of experience our stylists provide
+personalised services designed to bring out confidence
+and natural beauty.
+</p>
+</section>
 </div>
 
 
-                  </div>
+<footer class="footer">
+<p class="" style="cursor: text;">© 2026. All Rights Reserved.</p>
+</footer>
 
-</figure>
-              </div>
-
-          </div>
-</div>
-      <div class="testimonial-list__controls"></div>
-    </div>
-  </div>
-</div>
-
-</div><div id="shopify-section-template--18568265924941__rich_text_R9p3xT" class="shopify-section section-rich-text"><div class="article fully-spaced-row--medium">
-  <div class="container">
-    <div class="align-center spaced-column">
-
-              <h2 class="majortitle in-content h1-style" style="cursor: text;">Social Tag Text</h2>
-
-            <div class="rte lightly-spaced-row large-text"><p class="" style="cursor: text;">TAG us in your pictures on Instagram @your business tag or email them to yourbusiness@email</p></div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-
-<!------------------------------------- bottom image gallery section ----------------------------------->
-<div id="shopify-section-template--18568265924941__scrolling_banner_BCfKDk" class="shopify-section section-scrolling-banner">
-  <div id="section-id-template--18568265924941__scrolling_banner_BCfKDk" data-section-type="scrolling-banner">
-    <style>
-      #section-id-template--18568265924941__scrolling_banner_BCfKDk {
-        --vertical-padding: 20px;
-      }
-    </style>
-  </div>
-
-  <div id="shopify-section-template--18568265924941__custom_row_i6cwDK" class="shopify-section">
-    <div id="section-id-template--18568265924941__custom_row_i6cwDK" class="container fully-spaced-row--medium cf section-id-template--18568265924941__custom_row_i6cwDK" data-section-type="custom-row">
-
-      <div class="flexible-layout flexible-layout--align-center valign-middle">
-
-        <!-- BLOCK 1 -->
-        <div id="block-id-image_DYjkxi" class="column column--half block-id-image_DYjkxi">
-          <style>
-            #block-id-image_DYjkxi .fixed-height-item { height: 400px; }
-            @media (min-width: 768px) {
-              #block-id-image_DYjkxi .fixed-height-item { height: 600px; }
-            }
-          </style>
-
-          <div class="height--fixed image-overlay image-overlay--bg-shadow">
-            <div class="rimage-background-wrapper">
-              <img src="images/img_6.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOCK 2 -->
-        <div id="block-id-image_wHdNhQ" class="column column--half block-id-image_wHdNhQ">
-          <style>
-            #block-id-image_wHdNhQ .fixed-height-item { height: 400px; }
-            @media (min-width: 768px) {
-              #block-id-image_wHdNhQ .fixed-height-item { height: 600px; }
-            }
-          </style>
-
-          <div class="height--fixed image-overlay image-overlay--bg-shadow">
-            <div class="rimage-background-wrapper">
-              <img src="images/img_7.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOCK 3 -->
-        <div id="block-id-image_nMRRTp" class="column column--half block-id-image_nMRRTp">
-          <style>
-            #block-id-image_nMRRTp .fixed-height-item { height: 400px; }
-            @media (min-width: 768px) {
-              #block-id-image_nMRRTp .fixed-height-item { height: 600px; }
-            }
-          </style>
-
-          <div class="height--fixed image-overlay image-overlay--bg-shadow">
-            <div class="rimage-background-wrapper">
-              <img src="images/img_8.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOCK 4 -->
-        <div id="block-id-image_paNMN3" class="column column--half block-id-image_paNMN3">
-          <style>
-            #block-id-image_paNMN3 .fixed-height-item { height: 400px; }
-            @media (min-width: 768px) {
-              #block-id-image_paNMN3 .fixed-height-item { height: 600px; }
-            }
-          </style>
-
-          <div class="height--fixed image-overlay image-overlay--bg-shadow">
-            <div class="rimage-background-wrapper">
-              <img src="images/img_9.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<!------------------------------------------------ /.container footer section  ------------------------------------------------>
-  </main><!-- /#content --><div id="pagefooter">
-      <div id="shopify-section-cross-page-promos" class="shopify-section">
-  <div class="cross-page-promos">
-    <div class="container cf">
-      <div class="flexible-layout layout-all-quarters">
-
-        <div class="column column--quarter align-center block-id-1478526632862">
-          <div class="">
-
-            <a>
-
-                <div class="icon-with-caption">
-                  <div class="icon-with-caption__icon">
-
-                      <svg class="icon icon--medium icon--type-star" stroke-width="1" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1c.21 0 .4.13.47.33l1.62 4.54 4.92.1a.5.5 0 01.29.9l-3.92 2.9 1.42 4.58a.5.5 0 01-.75.56L8 12.17 3.95 14.9a.5.5 0 01-.75-.56l1.42-4.58L.7 6.87a.5.5 0 01.29-.9l4.92-.1 1.62-4.54A.5.5 0 018 1zm0 2L6.74 6.52a.5.5 0 01-.46.33l-3.8.08L5.5 9.17a.5.5 0 01.18.55l-1.1 3.56 3.14-2.13a.5.5 0 01.56 0l3.15 2.13-1.1-3.56a.5.5 0 01.17-.55l3.02-2.23-3.8-.08a.5.5 0 01-.46-.33L8 2.99z"></path></svg>
-
-                  </div>
-
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Enter Your Business Address here or leave empty.</p></div>
-
-                </div>
-
-            </a>
-
-          </div>
-        </div>
-
-        <div class="column column--quarter align-center block-id-1478526645605">
-          <div class="">
-
-                <div class="icon-with-caption">
-                  <div class="icon-with-caption__icon">
-
-                      <svg class="icon icon--medium icon--type-calendar" stroke-width="1" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect stroke="currentColor" fill="none" x="1.9032375" y="2.5116053" width="12.166035" height="12.166035" rx="1.3517816" ry="1.3517816"></rect>
-      <line stroke="currentColor" fill="none" x1="10.689817" y1="1.159824" x2="10.689817" y2="3.8633871"></line>
-      <line stroke="currentColor" fill="none" x1="5.2826915" y1="1.159824" x2="5.2826915" y2="3.8633871"></line>
-      <line stroke="currentColor" fill="none" x1="1.9032375" y1="6.5669503" x2="14.069271" y2="6.5669503"></line></svg>
-
-                  </div>
-
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Email: info@YourEmail</p></div>
-
-                </div>
-
-          </div>
-        </div>
-
-        <div class="column column--quarter align-center block-id-1478526647261">
-          <div class="">
-
-                <div class="icon-with-caption">
-                  <div class="icon-with-caption__icon">
-
-                      <svg class="icon icon--medium icon--type-star" stroke-width="1" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1c.21 0 .4.13.47.33l1.62 4.54 4.92.1a.5.5 0 01.29.9l-3.92 2.9 1.42 4.58a.5.5 0 01-.75.56L8 12.17 3.95 14.9a.5.5 0 01-.75-.56l1.42-4.58L.7 6.87a.5.5 0 01.29-.9l4.92-.1 1.62-4.54A.5.5 0 018 1zm0 2L6.74 6.52a.5.5 0 01-.46.33l-3.8.08L5.5 9.17a.5.5 0 01.18.55l-1.1 3.56 3.14-2.13a.5.5 0 01.56 0l3.15 2.13-1.1-3.56a.5.5 0 01.17-.55l3.02-2.23-3.8-.08a.5.5 0 01-.46-.33L8 2.99z"></path></svg>
-
-                  </div>
-
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Phone: <a href="tel:+353 00 000 0000">+353 00 000 0000</a></p></div>
-
-                </div>
-
-          </div>
-        </div>
-
-        <div class="column column--quarter align-center block-id-1478527611164">
-          <div class="">
-
-            <a>
-
-                <div class="icon-with-caption">
-                  <div class="icon-with-caption__icon">
-
-                      <svg class="icon icon--medium icon--type-briefcase" stroke-width="1" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect stroke="currentColor" fill="none" x="1.2850168" y="4.4139466" width="13.393794" height="9.3756561" rx="1.3393794" ry="1.3393794"></rect>
-      <path stroke="currentColor" fill="none" d="M 10.660673,13.789602 V 3.0745679 A 1.3393794,1.3393794 0 0 0 9.3212931,1.7351885 H 6.6425343 A 1.3393794,1.3393794 0 0 0 5.3031549,3.0745679 V 13.789602"></path></svg>
-
-                  </div>
-
-                  <div class="icon-with-caption__text heading-font h6-style align-center"><p class="" style="cursor: text;">Enter Text</p></div>
-
-                </div>
-
-            </a>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div><style type="text/css">
-
-</style>
-
-</div>
-      <div id="shopify-section-footer" class="shopify-section section-footer"><div data-section-type="footer">
-
-<div class="container container--no-max section-footer__row-container">
-    
-  </div>
-</div>
-
-</div>
-    </div>
-
-    
 
 
 
