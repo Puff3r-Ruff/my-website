@@ -63,94 +63,74 @@
 }
 
 </style>
-<script id="RequiredScript">
-function initSlider() {
-  const carousel = document.querySelector(".thg-slider");
-  const prev = document.querySelector(".thg-left");
-  const next = document.querySelector(".thg-right");
-
-  if (!carousel) {
-    console.warn("Slider not found — skipping slider init.");
-    return;
-  }
-
-  const getSlideWidth = () => {
-    const slide = carousel.querySelector(".thg-slide");
-    if (!slide) return 300;
-
-    const style = window.getComputedStyle(slide);
-    const margin =
-      parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-
-    return slide.getBoundingClientRect().width + margin;
-  };
-
-  if (next) {
-    next.addEventListener("click", (e) => {
-      e.preventDefault();
-      carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
-    });
-  }
-
-  if (prev) {
-    prev.addEventListener("click", (e) => {
-      e.preventDefault();
-      carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
-    });
-  }
-
-  let startX = 0;
-  let endX = 0;
-
-  carousel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchmove", (e) => {
-    endX = e.touches[0].clientX;
-  });
-
-  carousel.addEventListener("touchend", () => {
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        carousel.scrollBy({ left: getSlideWidth(), behavior: "smooth" });
-      } else {
-        carousel.scrollBy({ left: -getSlideWidth(), behavior: "smooth" });
-      }
-    }
-  });
-}
-function initBasicSlider() {
-  const slider = document.querySelector(".thg-slider");
-  const slides = document.querySelectorAll(".thg-slide");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
-
-  if (!slider || slides.length === 0) return;
-
-  let index = 0;
-
-  nextBtn?.addEventListener("click", () => {
-    index++;
-    if (index >= slides.length) index = 0;
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  });
-
-  prevBtn?.addEventListener("click", () => {
-    index--;
-    if (index < 0) index = slides.length - 1;
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  });
-}
-window.addEventListener("DOMContentLoaded", () => {
-    initSlider();        // your custom slider
-    initBasicSlider();
-  });
-</script></head>
+</head>
 
 <body class="template-index" data-cc-animate-timeout="0" id="Sav">
+
+
+<!-- Google Tag Manager -->
+
+  <title>
+    Your Custom Website
+  </title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href="styles.css" rel="stylesheet" type="text/css" media="all">
+
+<style>
+ /* Allow full scrolling */
+.collection-listing {
+  overflow: visible !important;
+}
+
+/* Main carousel */
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each slide */
+.product-block {
+  flex: 0 0 auto;
+  margin-right: 20px; /* adjust if needed */
+}
+
+/* Prevent shrinking */
+.carousel > * {
+  flex-shrink: 0;
+}
+/* Allow first and last slides to center */
+/* Give room for the first slide to center */
+.carousel {
+  
+}
+/* Remove extra space on the left of the slider */
+.product-list.carousel {
+  padding-left: 0 !important;
+}
+
+/* Make sure the very first card has no left margin */
+.product-list.carousel .product-block:first-child {
+  margin-left: 0 !important;
+}
+.product-list.carousel {
+  padding-left: 40vw;
+}
+
+</style>
+
+
 
 
 <!----------------- Top Announcement Bar ---------------------------->
@@ -170,7 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div class="announcement-bar__middle"><div class="announcement-bar__announcements"><div class="announcement">
-                <div class="announcement__text"><h4 class="" style="cursor: text;">Happy Days</h4></div>
+                <div class="announcement__text"><h4 class="" style="cursor: text;">Enter Business Message Here </h4></div>
               </div>
 
               <div class="announcement announcement--inactive">
@@ -209,8 +189,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
                 <h4 class="title" style="cursor: text;">Email: info@YourEmail</h4>
 
-            <div class="fluff"></div>
-          </div></div>
+            <div class="fluff"></div></div>
     </div></div>
 </div>
 <!----------------------------------------------------------- Contact Header End --------------------------------------->
@@ -245,122 +224,259 @@ window.addEventListener("DOMContentLoaded", () => {
 </div></div>
 </div>
 
-<!-------------------------------- Slider Start ----------------------------------------------->
- <div class="thg-slider-wrapper">
 
-<h2 class="thg-slider-title" style="cursor: text;">Another Mother</h2>
-<p class="thg-slider-subtitle" style="cursor: text;">Enter Text</p>
 
-<div class="thg-slider-container">
+<div id="shopify-section-template--18568265924941__16359278676808bea5" class="shopify-section section-featured-collection"><div class="section-id-template--18568265924941__16359278676808bea5 collection-slider-row" data-section-type="featured-collection" data-components="accordion,modal,price-range">
+  <div class="container container--not-mobile container--no-max">
+    <div class="collection-slider">
+      <h2 class="hometitle h4-style align-center has-paging" style="cursor: text;">
+        <a class="prev ltr-icon" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><title>Left</title><polyline points="15 18 9 12 15 6"></polyline></svg></a>
 
-<button class="thg-slider-btn prev">‹</button>
+<!-------------------------------- Text Under Main image ----------------------------------------------->        
+        <a class="has-paging__title"><span class="" style="cursor: text;">Enter Text Here</span></a>
+<!--------------------------------- Text under main image end ------------------------------------------>
 
-<div class="thg-slider" style="transform: translateX(0%);">
+        <a class="next ltr-icon" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><title>Right</title><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </h2><div class="view-all align-center">
 
-<div class="thg-slide">
-<img src="images/img_1.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Sister and brother</p>
+<!-------------------------------- Text Under Main image ----------------------------------------------->
+          <p class="small-feature-link" style="cursor: text;">Enter Text</p>
+<!-------------------------------- Text Under Main image ----------------------------------------------->
+
+        </div><div class="collection-listing">
+        <div class="product-list product-list--per-row-4 product-list--per-row-mob-2 product-list--image-shape-portrait-23 carousel">
+
+<!--------------------------------- Image Slider Product 1 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_1.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 </div>
 
-<div class="thg-slide">
-<img src="images/img_2.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
+
+<!------------------------ slider end ------------------------------------------->
+<!--------------------------------- Image Slider Product 2 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_2.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 </div>
 
-<div class="thg-slide">
-<img src="images/img_3.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
+
+<!------------------------ slider end ------------------------------------------->
+<!--------------------------------- Image Slider Product 3 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_3.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 </div>
 
-<div class="thg-slide">
-<img src="images/img_4.jpg" style="cursor: pointer;">
-<p class="thg-slide-label" style="cursor: text;">Image Text Here</p>
+
+<!------------------------ slider end ------------------------------------------->
+<!--------------------------------- Image Slider Product 4 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_4.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 </div>
 
+
+<!------------------------ slider end ------------------------------------------->
+<!--------------------------------- Image Slider Product 5 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_5.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 </div>
 
-<button class="thg-slider-btn next">›</button>
+
+<!------------------------ slider end ------------------------------------------->
+<!--------------------------------- Image Slider Product 6 ------------------------------------->
+   <div data-product-id="1031981514785" class="product-block">
+  <div class="block-inner">
+    <div class="block-inner-inner">
+
+      <div class="image-cont image-cont--with-secondary-image">
+          <div class="image-label-wrap">
+
+            <!-- PRIMARY IMAGE -->
+            <div class="product-block__image product-block__image--primary product-block__image--active" style="opacity:1 !important;">
+              <div class="rimage-outer-wrapper">
+                <div class="rimage-wrapper" style="padding-top:149.2537313432836%; position:relative; overflow:hidden;">
+
+                  <img class="rimage__image fade-in cover" src="images/img_6.jpg" alt="Product Image" style="top: 0px; left: 0px; display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; opacity: 1 !important; cursor: pointer;">
+
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+        
+
+        <p class="btn btn--secondary quickbuy-toggle" style="cursor: text;">Image Text Here</p>
+
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+<!------------------------ slider end ------------------------------------------->
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
+
+
 </div>
-
-<style>
-.thg-slider-wrapper{
-width:100%;
-margin:40px auto;
-text-align:center;
-}
-
-/* container */
-.thg-slider-container{
-position:relative;
-overflow:hidden;
-max-width:1100px;
-margin:auto;
-}
-
-/* slider track */
-.thg-slider{
-display:flex;
-transition:transform 0.4s ease;
-}
-
-/* slide */
-.thg-slide{
-min-width:100%;
-box-sizing:border-box;
-padding:0 10px;
-}
-
-/* image sizing */
-.thg-slide img{
-width:100%;
-max-width:900px;
-margin:auto;
-aspect-ratio:4/3;
-object-fit:cover;
-display:block;
-border-radius:10px;
-}
-
-/* label */
-.thg-slide-label{
-background:white;
-padding:14px;
-font-weight:500;
-text-align:center;
-}
-
-/* arrows */
-.thg-slider-btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:black;
-color:white;
-border:none;
-font-size:28px;
-padding:8px 14px;
-cursor:pointer;
-z-index:10;
-opacity:0.7;
-border-radius:6px;
-}
-
-.thg-slider-btn:hover{
-opacity:1;
-}
-
-/* arrow positions */
-.prev{
-left:10px;
-}
-
-.next{
-right:10px;
-}
-
-</style>
 <!------------------------------------- slider image end --------------------------------------->
 
 
@@ -418,7 +534,7 @@ right:10px;
 
 <div class="rimage-outer-wrapper">
   <div class="rimage-wrapper" style="padding-top:100.0%">
-    <img class="rimage__image lazyload--manual fade-in cover" src="images/img_5.jpg" alt="" style="object-position: 63.7339% 52.376%; cursor: pointer;">
+    <img class="rimage__image lazyload--manual fade-in cover" src="images/img_7.jpg" alt="" style="object-position: 63.7339% 52.376%; cursor: pointer;">
   </div>
 </div>
 
@@ -475,7 +591,7 @@ right:10px;
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="images/img_6.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="images/img_8.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
             </div>
           </div>
         </div>
@@ -491,7 +607,7 @@ right:10px;
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="images/img_7.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="images/img_9.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
             </div>
           </div>
         </div>
@@ -507,7 +623,7 @@ right:10px;
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="images/img_8.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="images/img_10.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
             </div>
           </div>
         </div>
@@ -523,7 +639,7 @@ right:10px;
 
           <div class="height--fixed image-overlay image-overlay--bg-shadow">
             <div class="rimage-background-wrapper">
-              <img src="images/img_9.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
+              <img src="images/img_11.jpg" class="rimage-outer-wrapper rimage-background fixed-height-item" style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;">
             </div>
           </div>
         </div>
@@ -644,6 +760,4 @@ right:10px;
 
 
 
-
-
-</body></html>
+</div></body></html>
