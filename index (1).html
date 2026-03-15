@@ -1,0 +1,326 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Website Template</title>
+<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+<header class="header">
+<div class="logo">Enter Logo Text</div>
+
+<nav>
+<ul>
+<li><a href="#" id="about-btn">About</a></li>
+<li><a href="#" id="home-btn" style="display:none;">Home</a></li>
+</ul>
+</nav>
+
+</header>
+
+
+<div id="content-area">
+
+<section class="hero">
+<div class="hero-content">
+<h1>Where Style Meets Confidence</h1>
+<p>Professional hairdressing, colouring, and styling tailored to you.</p>
+<a href="#contact" class="btn">Book Appointment</a>
+</div>
+</section>
+
+<section id="services" class="services">
+<h2>Our Services</h2>
+
+<div class="service-grid">
+
+<div class="service-card">
+<h3>Haircut & Styling</h3>
+<p>Precision cuts and styling for all hair types.</p>
+</div>
+
+<div class="service-card">
+<h3>Colouring</h3>
+<p>Highlights, balayage and full colour.</p>
+</div>
+
+<div class="service-card">
+<h3>Treatments</h3>
+<p>Deep conditioning and restorative treatments.</p>
+</div>
+
+</div>
+</section>
+
+
+<section id="gallery" class="gallery">
+
+<h2>Gallery</h2>
+
+<div class="gallery-grid">
+
+<img src="https://picsum.photos/1200/800?40">
+<img src="https://picsum.photos/1200/800?41">
+<img src="https://picsum.photos/1200/800?42">
+<img src="https://picsum.photos/1200/800?43">
+
+</div>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+<h2>Book Appointment</h2>
+
+<form class="contact-form">
+
+<input type="text" placeholder="Name" required>
+<input type="tel" placeholder="Phone" required>
+<input type="email" placeholder="Email" required>
+
+<textarea placeholder="Message"></textarea>
+
+<button class="btn">Submit</button>
+
+</form>
+
+</section>
+
+</div>
+
+
+<footer class="footer">
+<p>© 2026. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+
+/* -------------------------
+PAGE SWITCHING SYSTEM
+------------------------- */
+
+const contentArea = document.getElementById("content-area");
+const aboutBtn = document.getElementById("about-btn");
+const homeBtn = document.getElementById("home-btn");
+
+/* Save original home */
+let savedHomeHTML = contentArea.innerHTML;
+
+/* About page HTML */
+
+const aboutPage = `
+<section class="about">
+<h2>About Us</h2>
+<p>
+At Salon Luxe we believe your hair is your signature.
+With over 10 years of experience our stylists provide
+personalised services designed to bring out confidence
+and natural beauty.
+</p>
+</section>
+`;
+
+
+/* Switch to About */
+
+aboutBtn.onclick = function(e){
+
+e.preventDefault();
+
+/* Save edited home before leaving */
+savedHomeHTML = contentArea.innerHTML;
+
+/* Load about */
+contentArea.innerHTML = aboutPage;
+
+homeBtn.style.display = "inline-block";
+
+initPage();
+
+};
+
+
+/* Switch back to Home */
+
+homeBtn.onclick = function(e){
+
+e.preventDefault();
+
+/* Restore saved home */
+contentArea.innerHTML = savedHomeHTML;
+
+homeBtn.style.display = "none";
+
+initPage();
+
+};
+
+
+
+/* -------------------------
+INIT PAGE FEATURES
+------------------------- */
+
+function initPage(){
+
+enableTextEditing();
+enableImageReplacement();
+enableHeroImageReplacement();
+enableFormHandler();
+
+}
+
+
+
+/* -------------------------
+TEXT EDITING
+------------------------- */
+
+function enableTextEditing(){
+
+document.querySelectorAll("h1,h2,h3,p,span").forEach(el=>{
+
+el.style.cursor="text";
+
+el.onclick=function(){
+
+el.contentEditable=true;
+
+el.focus();
+
+el.onblur=function(){
+el.contentEditable=false;
+};
+
+};
+
+});
+
+}
+
+
+
+/* -------------------------
+IMAGE REPLACEMENT
+------------------------- */
+
+function enableImageReplacement(){
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.style.cursor="pointer";
+
+img.onclick=function(){
+
+const input=document.createElement("input");
+
+input.type="file";
+input.accept="image/*";
+
+input.onchange=function(e){
+
+const file=e.target.files[0];
+
+const reader=new FileReader();
+
+reader.onload=function(ev){
+
+img.src = ev.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+};
+
+input.click();
+
+};
+
+});
+
+}
+
+
+
+/* -------------------------
+HERO IMAGE REPLACEMENT
+------------------------- */
+
+function enableHeroImageReplacement(){
+
+const hero=document.querySelector(".hero");
+
+if(!hero) return;
+
+hero.style.cursor="pointer";
+
+hero.onclick=function(){
+
+const input=document.createElement("input");
+
+input.type="file";
+input.accept="image/*";
+
+input.onchange=function(e){
+
+const file=e.target.files[0];
+
+const reader=new FileReader();
+
+reader.onload=function(ev){
+
+hero.style.backgroundImage = "url('" + ev.target.result + "')";
+
+};
+
+reader.readAsDataURL(file);
+
+};
+
+input.click();
+
+};
+
+}
+
+
+
+/* -------------------------
+FORM HANDLER
+------------------------- */
+
+function enableFormHandler(){
+
+const form=document.querySelector(".contact-form");
+
+if(!form) return;
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("Appointment request sent!");
+
+form.reset();
+
+});
+
+}
+
+
+/* Run once on load */
+
+initPage();
+
+</script>
+
+</body>
+</html>
+```
